@@ -40,6 +40,28 @@
 
 Python实用宝典：[pythondict.com](https://pythondict.com)，欢迎关注Python实用宝典公众号阅读最新的文章。
 
+## 🌐 Web UI - 策略可视化平台
+
+**NEW!** 本项目现在提供了一个完善的Web用户界面，让您可以：
+
+- 📊 **可视化浏览**：以卡片形式展示所有13个策略，按类别分组
+- 🖼️ **预览图表**：直接查看策略的回测绩效图（如强化学习的收益曲线）
+- 🚀 **一键运行**：在Web界面上直接执行策略并查看结果
+- 📱 **响应式设计**：支持桌面和移动设备访问
+- 🎨 **美观界面**：现代化的渐变色主题设计
+
+### 快速启动
+
+```bash
+cd webui
+pip install -r requirements.txt
+python app.py
+```
+
+然后在浏览器中访问：`http://localhost:5000`
+
+详细使用说明请查看 [webui/README.md](webui/README.md)
+
 ## 问题反馈
 1.如遇到`ImportError: cannot import name 'warnings'`错误，请安装matplotlib-3.2.2
 ```

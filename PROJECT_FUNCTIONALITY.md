@@ -73,7 +73,7 @@ Convertible bond investment strategy and arbitrage opportunity analysis
 
 ## 📚 Tutorial Directory Structure
 
-The project contains 15 series of tutorials, each directory corresponding to a specific quantitative investment topic:
+The project contains 15 series of tutorial articles, of which 13 tutorials have corresponding code directories. Each directory corresponds to a specific quantitative investment topic:
 
 | Directory | Topic | Functionality |
 |-----------|-------|---------------|
@@ -90,6 +90,8 @@ The project contains 15 series of tutorials, each directory corresponding to a s
 | 11.eastmoney_with_prom_grafana | Real-time Monitoring | Prometheus+Grafana real-time monitoring system |
 | 13.alphalens_factor_backtest | Factor Backtesting | Alphalens single-factor backtesting analysis |
 | 15.rl_learning | Reinforcement Learning | Deep reinforcement learning automatic trading system |
+
+**Note**: Tutorial 12 (Lean quantitative trading platform) and Tutorial 14 (Qlib quantitative investment platform) are introductions to external platforms and do not have corresponding code directories in this repository.
 
 ## 💡 Core Value
 
@@ -178,14 +180,14 @@ python main.py
 
 ## 🔗 Related Resources
 
-- **Project Homepage**: Python实用宝典 - https://pythondict.com
+- **Project Homepage**: Python实用宝典 (Python Practical Dictionary) - https://pythondict.com
 - **Tutorial List**: See complete tutorial links in README.md
 - **Core Framework**: Backtrader - https://github.com/mementum/backtrader
 - **Data Platform**: baostock - http://baostock.com
 
 ## 📝 Summary
 
-This is a comprehensive quantitative investment tutorial project covering everything from basic technical indicator strategies to advanced deep reinforcement learning algorithms. Through 15 series of tutorials, it helps learners:
+This is a comprehensive quantitative investment tutorial project covering everything from basic technical indicator strategies to advanced deep reinforcement learning algorithms. Through 15 series of tutorial articles (including 13 code implementation modules), it helps learners:
 
 - Master basic principles and methods of quantitative investment
 - Learn to develop and backtest strategies using Python

@@ -186,6 +186,14 @@ def run_strategy():
     strategy = STRATEGIES[strategy_id]
     script_path = BASE_DIR / strategy['script']
     
+    # 安全检查：确保脚本路径在项目目录内
+    try:
+        script_path = script_path.resolve()
+        if not str(script_path).startswith(str(BASE_DIR)):
+            return jsonify({'error': '非法的脚本路径'}), 403
+    except (ValueError, OSError):
+        return jsonify({'error': '非法的脚本路径'}), 403
+    
     if not script_path.exists():
         return jsonify({'error': '策略脚本不存在'}), 404
     
@@ -233,4 +241,9 @@ if __name__ == '__main__':
     os.makedirs(BASE_DIR / 'webui' / 'templates', exist_ok=True)
     os.makedirs(BASE_DIR / 'webui' / 'static', exist_ok=True)
     
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # 仅在开发环境启用debug模式
+    # 生产环境请使用: gunicorn -w 4 -b 0.0.0.0:5000 app:app
+    import os as _os
+    debug_mode = _os.environ.get('FLASK_ENV') == 'development'
+    
+    app.run(debug=debug_mode, host='127.0.0.1', port=5000)

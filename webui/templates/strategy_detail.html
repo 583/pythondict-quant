@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ strategy.name }} - 量化投资策略平台</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📈 量化投资策略平台</h1>
+            <p class="subtitle"><a href="{{ url_for('index') }}" style="color: white; text-decoration: none;">← 返回首页</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="strategy-detail">
+            <div class="detail-header">
+                <h1>{{ strategy.name }}</h1>
+                <span class="badge badge-category">{{ strategy.category }}</span>
+            </div>
+
+            <div class="detail-description">
+                <h2>策略说明</h2>
+                <p>{{ strategy.description }}</p>
+            </div>
+
+            {% if preview_images %}
+            <div class="preview-images">
+                <h2>回测绩效图</h2>
+                <div class="image-gallery">
+                    {% for img_url in preview_images %}
+                    <div class="image-item">
+                        <img src="{{ img_url }}" alt="策略绩效图" onclick="openImageModal(this.src)">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="strategy-controls">
+                <h2>策略执行</h2>
+                <div class="control-panel">
+                    <button class="btn btn-primary btn-large" onclick="runStrategy('{{ strategy.id }}')">
+                        🚀 运行策略
+                    </button>
+                    {% if strategy.has_plot %}
+                    <p class="note">💡 此策略支持生成回测图表</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="strategy-info">
+                <h2>技术信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td><strong>策略脚本:</strong></td>
+                        <td><code>{{ strategy.script }}</code></td>
+                    </tr>
+                    {% if strategy.stock_file %}
+                    <tr>
+                        <td><strong>数据文件:</strong></td>
+                        <td><code>{{ strategy.stock_file }}</code></td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td><strong>支持图表:</strong></td>
+                        <td>{{ '是' if strategy.has_plot else '否' }}</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Python实用宝典 | 量化投资实战教程 | <a href="https://pythondict.com" target="_blank">pythondict.com</a></p>
+            <p class="warning">⚠️ 本平台仅供学习参考，不构成投资建议。股市有风险，投资需谨慎。</p>
+        </div>
+    </footer>
+
+    <!-- 运行结果模态框 -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>策略运行结果</h2>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <!-- 图片预览模态框 -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content modal-image">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="图片预览">
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

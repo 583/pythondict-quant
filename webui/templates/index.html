@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量化投资策略平台 - Python实用宝典</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📈 量化投资策略平台</h1>
+            <p class="subtitle">Python实用宝典 - 数据驱动的投资决策</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>欢迎使用量化投资策略平台</h2>
+            <p>本平台提供12个量化投资策略的可视化展示和执行功能，涵盖技术指标策略、K线形态策略、因子分析、强化学习等多个领域。</p>
+            <p>选择下方的策略卡片，查看详情并运行回测。</p>
+        </section>
+
+        {% for category, strategies in categories.items() %}
+        <section class="category-section">
+            <h2 class="category-title">{{ category }}</h2>
+            <div class="strategy-grid">
+                {% for strategy in strategies %}
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <h3>{{ strategy.name }}</h3>
+                        {% if strategy.has_plot %}
+                        <span class="badge badge-chart">📊 有图表</span>
+                        {% endif %}
+                    </div>
+                    <p class="strategy-description">{{ strategy.description }}</p>
+                    <div class="strategy-actions">
+                        <a href="{{ url_for('strategy_detail', strategy_id=strategy.id) }}" class="btn btn-primary">查看详情</a>
+                        <button class="btn btn-secondary" onclick="runStrategy('{{ strategy.id }}')">运行策略</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Python实用宝典 | 量化投资实战教程 | <a href="https://pythondict.com" target="_blank">pythondict.com</a></p>
+            <p class="warning">⚠️ 本平台仅供学习参考，不构成投资建议。股市有风险，投资需谨慎。</p>
+        </div>
+    </footer>
+
+    <!-- 运行结果模态框 -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>策略运行结果</h2>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
